@@ -1,0 +1,30 @@
+.INPUTS {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 5px 9px;
+  margin-top: 70px;
+  height: 40px;
+  margin-left: -130px;
+}
+.sureName {
+  width: 200px;
+  color: white;
+  border-radius: 7px;
+  border: 1px solid rgb(186, 231, 231);
+  background-color: rgb(157, 191, 214);
+}
+.years {
+  width: 110px;
+  color: white;
+  border-radius: 7px;
+  border: 1px solid rgb(186, 231, 231);
+  background-color: rgb(157, 191, 214);
+}
+.name {
+  width: 170px;
+  color: white;
+  border-radius: 7px;
+  border: 1px solid rgb(186, 231, 231);
+  background-color: rgb(157, 191, 214);
+}

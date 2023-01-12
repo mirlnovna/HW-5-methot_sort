@@ -1,23 +1,140 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import CustomButton from "./components/CustomButton/CustomButton";
+import CustomInput from "./components/CustomInput/CustomInput";
+import CustomTable from "./components/CustomTable/CustomTable";
 
+const initialValues = {
+  userName: "",
+  userSurname: "",
+  userOld: "",
+};
 function App() {
+  const [userData, setUserData] = useState(initialValues);
+  const [users, setUsers] = useState([]);
+  const [editableUserData, setEditableUserData] = useState({
+    isEdit: false,
+    userIndex: null,
+  });
+  // const handleSort = (e) => {
+  //   e.preventDefault();
+  //   setUsers(users.slice().sort((a, b) => b.old - a.old));
+  // };
+  users.sort((a, b) => {
+    return b.userOld - a.userOld;
+  });
+
+  const handleRemoveClick = ({ index }) => {
+    setUsers(users.filter((user, userIndex) => userIndex !== index));
+  };
+
+  const isFilledFields =
+    userData.userName && userData.userSurname && userData.userOld;
+
+  const handleSubmitUser = (e) => {
+    e.preventDefault();
+
+    if (isFilledFields) {
+      if (editableUserData.isEdit) {
+        const editedData = users;
+        editedData.splice(editableUserData.userIndex, 1, userData);
+
+        setUsers(editedData);
+
+        setEditableUserData({
+          isEdit: false,
+          userIndex: null,
+        });
+      } else {
+        setUsers((prevState) => [...prevState, userData]);
+      }
+
+      setUserData(initialValues);
+    }
+  };
+
+  const handleCleanClick = () => {
+    setUserData(initialValues);
+    setEditableUserData({
+      isEdit: false,
+      userIndex: null,
+    });
+  };
+
+  const handleEditClick = ({ user, index }) => {
+    setUserData(user);
+    setEditableUserData({
+      isEdit: true,
+      userIndex: index,
+    });
+  };
+
+  const handleInputChange = (e, userName) =>
+    setUserData((prevState) => ({
+      ...prevState,
+      [userName]: e.target.value,
+    }));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="wrapper-content">
+        <div>
+          <form onSubmit={handleSubmitUser} onReset={handleCleanClick}>
+            <div className="INPUTS">
+              <CustomInput
+                placeholder="Write your name"
+                handleChange={handleInputChange}
+                value={userData.userName}
+                className="name"
+                fieldName="userName"
+              />
+
+              <CustomInput
+                placeholder="Write your surname "
+                handleChange={handleInputChange}
+                value={userData.userSurname}
+                className="sureName"
+                fieldName="userSurname"
+              />
+
+              <CustomInput
+                placeholder="Write your old"
+                type="number"
+                className="years"
+                handleChange={handleInputChange}
+                value={userData.userOld}
+                fieldName="userOld"
+              />
+            </div>
+            <div className="buttons-wrapper">
+              <CustomButton
+                label="Clean"
+                classNames="Clean"
+                handleClick={() => {}}
+                data={null}
+                type="reset"
+              />
+
+              <CustomButton
+                label={editableUserData.isEdit ? "Save" : "Add"}
+                classNames="added"
+                handleClick={() => {}}
+                data={null}
+                type="submit"
+                disabled={!isFilledFields}
+              />
+            </div>
+            <div className="table-data">
+              <CustomTable
+                users={users}
+                handleEditClick={handleEditClick}
+                handleRemoveClick={handleRemoveClick}
+                // onSortClick={handleSort}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

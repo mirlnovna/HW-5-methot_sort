@@ -1,0 +1,36 @@
+.edit_remove_users {
+  display: flex;
+  justify-content: space-between;
+}
+.fonts {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.table-data {
+  margin-left: 24.7%;
+  margin-top: 16px;
+  width: 514px;
+  /* border: 2px solid whitesmoke; */
+  padding: 6px;
+  border-radius: 4px;
+}
+.edit_remove {
+  display: flex;
+  gap: 5px;
+  position: relative;
+  left: 155px;
+  top: 25px;
+}
+.edit-ection {
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  border: 2px solid;
+}
+.remove-action {
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  border: 2px solid;
+}
