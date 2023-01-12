@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/HW-5-methot_sort/static/css/main.ff3d0a09.css",
+    "main.js": "/HW-5-methot_sort/static/js/main.adfdbabc.js",
+    "index.html": "/HW-5-methot_sort/index.html",
+    "main.ff3d0a09.css.map": "/HW-5-methot_sort/static/css/main.ff3d0a09.css.map",
+    "main.adfdbabc.js.map": "/HW-5-methot_sort/static/js/main.adfdbabc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff3d0a09.css",
+    "static/js/main.adfdbabc.js"
+  ]
+}
